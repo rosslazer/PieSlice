@@ -93,13 +93,19 @@
 
     </script>
   </head>
-  <body ng-app="starter">
+<body ng-app="calendar" ng-controller="Calendar">
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
       <ion-content>
+
+      <ion-list>
+      <ion-item ng-repeat="event in events">
+        {{event.title}}
+      </ion-item>
+    </ion-list>
       </ion-content>
     </ion-pane>
   </body>

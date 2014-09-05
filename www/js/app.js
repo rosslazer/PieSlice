@@ -21,3 +21,10 @@ angular.module('starter', ['ionic'])
 
   });
 })
+
+
+angular.module('calendar', ['ionic'])
+
+.controller('Calendar', function($scope) {
+  $scope.events = [ ];
+});
