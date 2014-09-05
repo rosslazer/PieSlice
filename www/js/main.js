@@ -37,13 +37,14 @@ var getEndDate = function(string)
 // If a class is dropped it sometimes shows up with the status of dropped
 // do not add to calendar
 
+var classes = [];
+var geterdone = function() {
 t = document.getElementById('ptifrmtgtframe');
 //The schedule is in an iframe so we need to use the document from that iframe instead
 newdocument = t.contentWindow.document;
 newdocument.getElementsByClassName('PSGROUPBOXWBO');
 classrows = newdocument.getElementsByClassName('PSGROUPBOXWBO');
 //start at 1 because 1st row is the controls
-classes = []
 for (var i = 1; i < classrows.length; i++) {
 	var workingrow = classrows[i];
 	var classnametr = workingrow.getElementsByClassName('PAGROUPDIVIDER')[0]
@@ -93,5 +94,10 @@ for (var i = 1; i < classrows.length; i++) {
 	console.log(units);
 	console.log(grading);
 
-};
+}
+	localStorage.setItem( "classes", JSON.stringify(classes));
+
+}
+
+geterdone();
 

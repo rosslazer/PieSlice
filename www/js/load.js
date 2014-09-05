@@ -1,9 +1,1 @@
-var ref = window.open('http://myslice.syr.edu', '_blank', 'location=yes');
-
-ref.addEventListener('loadstop', function() { 
-
-	alert("sdfdsfsd");
-
-    ref.executeSript({file: "/js/thegoods.js"});
-
-});
+$('a[href="https://myslice.syr.edu/psp/PTL9PROD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?PORTALPARAM_PTCNAV=SYR_VW_CLASS_SCHEDULE_CREF&EOPP.SCNode=EMPL&EOPP.SCPortal=EMPLOYEE&EOPP.SCName=ADMN_STUDENT_SERVICES&EOPP.SCLabel=&EOPP.SCPTcname=PT_PTPP_SCFNAV_BASEPAGE_SCR&FolderPath=PORTAL_ROOT_OBJECT.SYR_CREF_ROOT_FOLDER.SYR_STUDENT_SRVCS_FOLDER.SYR_ENROLLMENT_FOLDER.SYR_VW_CLASS_SCHEDULE_CREF&IsFolder=false"]').click()
