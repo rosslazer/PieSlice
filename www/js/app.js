@@ -137,6 +137,7 @@ function onDeviceReady() {
 }
 
 $scope.addToNativeCal = function() {
+  var classes = $scope.classes;
 
     console.log("starting");
     for (var i = 0; i < classes.length; i++) {
