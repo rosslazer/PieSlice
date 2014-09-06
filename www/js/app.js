@@ -81,6 +81,7 @@ function onDeviceReady() {
         }
 
 
+
         if (event.url == "https://myslice.syr.edu/psp/PTL9PROD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL?PORTALPARAM_PTCNAV=SYR_VW_CLASS_SCHEDULE_CREF&EOPP.SCNode=EMPL&EOPP.SCPortal=EMPLOYEE&EOPP.SCName=ADMN_STUDENT_SERVICES&EOPP.SCLabel=&EOPP.SCPTcname=PT_PTPP_SCFNAV_BASEPAGE_SCR&FolderPath=PORTAL_ROOT_OBJECT.SYR_CREF_ROOT_FOLDER.SYR_STUDENT_SRVCS_FOLDER.SYR_ENROLLMENT_FOLDER.SYR_VW_CLASS_SCHEDULE_CREF&IsFolder=false")
 
         {
@@ -139,12 +140,34 @@ function onDeviceReady() {
 $scope.addToNativeCal = function() {
   var classes = $scope.classes;
 
+
+    window.basedate = basedate;
+    var indexmonth = new Date(classes[0].startdate);
+    var basedate = indexmonth.getDate();
+    var basemonth = indexmonth.getMonth();
+    window.basemonth = basedate;
+    window.indexmonth = indexmonth;
+
+
+      for (var i = 0; i < classes.length; i++) {
+
+        sdate = (new Date(classes[i].startdate)).getDate()
+        if(sdate < basedate  )
+        {
+          basedate = sdate;
+        }
+
+
+
+      }
+
+
     console.log("starting");
     for (var i = 0; i < classes.length; i++) {
         for (var j = 0; j < classes[i].occurences.length; j++) {
             var currentevent = classes[i];
             // beware: month 0 = january, 11 = december
-            var title = currentevent.classnumber + " - " + currentevent.classname + " _ " + currentevent.component;
+            var title = currentevent.classnumber + " - " + currentevent.classname + " - " + currentevent.component;
             var location = currentevent.room;
             var notes = "";
             var success = function(message) {
@@ -159,9 +182,10 @@ $scope.addToNativeCal = function() {
             calOptions.firstReminderMinutes = null;
             calOptions.recurrence = "weekly";
 
-            //Set the end date far into the future so we don't need to lookup semester date info.
-            calOptions.recurrenceEndDate = new Date(2020,0,0,0);
-            var day = 25;
+
+            //This is broken for some reason?
+            calOptions.recurrenceEndDate = new Date(currentevent.enddate);
+            var day = basedate;
             switch (currentevent.occurences[j]) {
                 case "Mo":
                     day = day + 0;
@@ -184,6 +208,9 @@ $scope.addToNativeCal = function() {
                 case "Su":
                     day = day + 6;
                 }
+                  
+
+
                   
 
             var rex = RegExp('^([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(AM|PM)','g');
@@ -210,7 +237,7 @@ $scope.addToNativeCal = function() {
             
 
 
-            startDate = new Date(2014, 7, day, starthours, startminutes, 0, 0);
+            startDate = new Date(2014, basemonth, day, starthours, startminutes, 0, 0);
 
 
             var endhours = parseInt(endmatches[1]);
@@ -228,7 +255,7 @@ $scope.addToNativeCal = function() {
             
   
             
-            endDate = new Date(2014, 7, day, endhours, endminutes, 0, 0);
+            endDate = new Date(2014, basemonth, day, endhours, endminutes, 0, 0);
 
             //alert(startDate + " " + endDate)
 
