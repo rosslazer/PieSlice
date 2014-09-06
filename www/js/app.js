@@ -25,7 +25,7 @@ angular.module('starter', ['ionic'])
 
 angular.module('PieSlice', ['ionic'])
 
-.controller('main', function($scope) {
+.controller('main', function($scope, $ionicPopup) {
   $scope.loggedin = false;
   $scope.classes = [];
     $scope.login =  function() {
@@ -110,6 +110,7 @@ function onDeviceReady() {
                             classes = JSON.parse(values);
                             $scope.classes = classes;
                             $scope.loggedin = true;
+                            $scope.$apply();
 
                             window.foo = $scope.loggedin;
                             clearInterval(loop);
@@ -135,12 +136,37 @@ function onDeviceReady() {
 
 }
 
-}
+};
+
+
+ $scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Classes Already Added To Calendar',
+     template: 'Are you sure you want to add your classes again?'
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+      $scope.addToNativeCal();
+     } 
+   });
+ };
+
+
+$scope.addtoCal = function() {
+
+  if(Boolean(window.localStorage['addedCal'])){
+    $scope.showConfirm();
+  }
+  else {
+    $scope.addToNativeCal();
+  }
+
+};
+
 
 $scope.addToNativeCal = function() {
-  var classes = $scope.classes;
 
-
+    var classes = $scope.classes;
     window.basedate = basedate;
     var indexmonth = new Date(classes[0].startdate);
     var basedate = indexmonth.getDate();
@@ -268,5 +294,12 @@ $scope.addToNativeCal = function() {
 
     }
     console.log("Finished");
+    window.localStorage['addedCal'] = true;
+
 };
+
+
+
+
+//End of addTo Cal
 });
