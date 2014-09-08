@@ -28,18 +28,15 @@ $ cordova build
 
 ```
 
-```bash
-
-
 For IOS make sure you have Xcode and the IOS SDK/Emulate installed. Then run:
+```bash
 ionic platform ios
 ionic build ios
 ionic emualte ios
 ```
 
-```bash
-
 For Android make sure you have Xcode and the Android Development Studio. Then run:
+```bash
 ionic platform android
 ionic build android
 ionic emualte android
@@ -64,4 +61,4 @@ We like to think so. The application has no backend. It uses a customized webvie
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Issues
-If you find any issues with this app, please file an issue on the repo.
+If you find any issues with this app, please file an issue in the repo.
