@@ -1,26 +1,67 @@
-Ionic App Base
+PieSlice
 =====================
 
-A starting project for Ionic that optionally supports using custom SCSS.
+A mobile optimizer for the MySlice website.
 
-## Using this project
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+## What is this?
+MySlice is the portal that Syraucse University students use to manage their school administrivia. It is based on a heavily customized Oracle PeopleSoft solution. Over the years it has lagged behind the adoption of mobile phones. This makes it very difficult to access from a non-desktop. The goal of this project is to provide a mobile interface to MySlice.
+
+In its current state, the application allows students to view their class schedule, and add their classes to their native calendar. In the future this app will be expanded to cover other important use cases.
+
+
+## How to install
+
+*This code does not work on its own*. It is missing the Ionic library, AngularJS, The Cordova InAppBrowser Plugin, and Calendar Plugin..
+
+
+### With the Ionic tool:
+
+Run the following to get all the libraries you need installed.
 
 ```bash
-$ npm install -g ionic
-```
+$ sudo npm install -g ionic cordova
+$ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+$ cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
+$ cordova build
 
-Then run:
+```
 
 ```bash
-$ ionic start myProject tabs
+
+
+For IOS make sure you have Xcode and the IOS SDK/Emulate installed. Then run:
+ionic platform ios
+ionic build ios
+ionic emualte ios
 ```
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
+```bash
+
+For Android make sure you have Xcode and the Android Development Studio. Then run:
+ionic platform android
+ionic build android
+ionic emualte android
+```
+
+## Is it secure?
+
+We like to think so. The application has no backend. It uses a customized webview(web browser). This means that no user data leaves the device. While the application uses javascript injection to scrape the calendar, it does not automate any user actions. It just restyles the website to make it easier to use and gets data. The security of this application is inherited from the browser and forces SSL. In the event that you find any security issues, please report them.
+
+##License
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
-
+If you find any issues with this app, please file an issue on the repo.
